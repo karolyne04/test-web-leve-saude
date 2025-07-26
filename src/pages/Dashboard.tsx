@@ -23,7 +23,7 @@ type Feedback = {
     nome: string;
     nota: number;
     comentario: string;
-    data: { seconds: number; nanoseconds: number } | Date;
+    data: Date;
 };
 
 
@@ -62,12 +62,16 @@ export default function Dashboard() {
                         }
                     }
 
+                    const dataConvertida = d.createdAt instanceof Date
+                        ? d.createdAt
+                        : new Date(d.createdAt.seconds * 1000);
+
                     return {
                         id: doc.id,
                         nome,
                         nota: d.rating,
                         comentario: d.comment,
-                        data: d.createdAt,
+                        data: dataConvertida,
                     };
                 })
             );
@@ -90,8 +94,8 @@ export default function Dashboard() {
         }
         filtered = [...filtered].sort((a, b) => {
             if (orderBy === 'data') {
-                const aTime = a.data?.seconds || 0;
-                const bTime = b.data?.seconds || 0;
+                const aTime = a.data?.getTime();
+                const bTime = b.data?.getTime();
                 return orderDir === 'desc' ? bTime - aTime : aTime - bTime;
             } else {
                 return orderDir === 'desc' ? b.nota - a.nota : a.nota - b.nota;
@@ -172,7 +176,7 @@ export default function Dashboard() {
                                         <td className="py-3 px-4 text-lg text-star">{'★'.repeat(fb.nota) + '☆'.repeat(5 - fb.nota)}</td>
                                         <td className="py-3 px-4 max-w-xs text-text">{fb.comentario}</td>
                                         <td className="py-3 px-4 text-primary font-medium">{fb.nome}</td>
-                                        <td className="py-3 px-4 text-textSecondary">{fb.data && new Date(fb.data.seconds * 1000).toISOString().slice(0, 10)}</td>
+                                        <td className="py-3 px-4 text-textSecondary">{fb.data.toISOString().slice(0, 10)}</td>
                                         <td className="py-3 px-4 text-center flex gap-2 justify-center items-center">
                                             <button className="inline-flex items-center justify-center bg-secondary hover:bg-primary text-white rounded-full p-2 transition focus:outline-none focus:ring-2 focus:ring-primary" title="Visualizar detalhes">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
