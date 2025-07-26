@@ -26,15 +26,8 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="flex justify-end p-4">
-        <button
-          onClick={() => signOut(auth)}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-        >
-          Sair
-        </button>
-      </div>
+    <div className="min-h-screen bg-background">
+
       <Dashboard />
     </div>
   );
