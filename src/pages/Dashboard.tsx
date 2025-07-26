@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 
+import type { DocumentData } from 'firebase/firestore';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
