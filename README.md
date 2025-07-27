@@ -1,69 +1,95 @@
-# React + TypeScript + Vite
+FeedbackHub Web - Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web criada para administração e visualização de feedbacks dos usuários da versão mobile do app **FeedbackHub**. Desenvolvida com **React + Vite + TypeScript**, utilizando autenticação via **Firebase** e estilização com **Tailwind CSS**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+- [React + Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Firebase Authentication](https://firebase.google.com/products/auth)
+- [Firebase Firestore](https://firebase.google.com/products/firestore)
+- [ESLint + Prettier](https://eslint.org/)
+- Deploy via [Vercel]🔗https://test-web-leve-saude-ten.vercel.app/) 
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📋 Funcionalidades
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+✅ Autenticação com Firebase (email e senha)  
+✅ Dashboard com listagem de todos os feedbacks enviados  
+✅ Exibição de nome do usuário, nota, comentário e data  
+✅ Filtros de ordenação por **data** (mais recentes / mais antigos) ou **nota** (maior / menor)  
+✅ Busca por **nome** do usuário ou **conteúdo do comentário**  
+✅ Estilização com **Tailwind CSS**  
+✅ Leitura dos dados via **Firestore**  
+✅ Projeto em **TypeScript**, com **ESLint + Prettier**  
+✅ Repositório público com histórico de commits organizado
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧪 Como rodar o projeto localmente
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. Clone o repositório
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```bash
+git clone https://github.com/karolyne04/test-web-leve-saude.git
+cd test-web-leve-saude
+
+. Instale as dependências
+
+npm install
+
+ Crie o arquivo .env com suas chaves do Firebase
+
+VITE_FIREBASE_API_KEY=AIzaSyBJJd8av7Zs1AXv0z1zGxyoR7Urse8391E
+VITE_FIREBASE_AUTH_DOMAIN=feedbackhub-83b2d.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=feedbackhub-83b2d
+VITE_FIREBASE_STORAGE_BUCKET=feedbackhub-83b2d.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=335214134775
+VITE_FIREBASE_APP_ID=1:335214134775:web:95ea5cc4d0ed585d2b5af2
+
+ Rode o projeto localmente
+
+npm run dev
+
+Firebase - Estrutura do Firestore
+
+📂 feedbacks
+ ┣ 📄 <feedbackId>
+ ┃ ┣ uid: string // ID do usuário
+ ┃ ┣ userName: string // nome do usuário (se armazenado)
+ ┃ ┣ stars: number // nota de 1 a 5
+ ┃ ┣ comment: string // texto do feedback
+ ┃ ┣ createdAt: timestamp // data do envio
+O campo userName pode ser obtido via displayName do usuário autenticado, se configurado.
+ Funcionalidades avançadas da UI
+🔎 Campo de busca que filtra feedbacks por nome ou comentário
+
+🗂️ Filtros de ordenação:
+
+Mais recentes / mais antigos
+
+Notas maiores / menores
+
+📅 Datas formatadas (ex: dd/mm/aaaa hh:mm)
+
+🧹 Padronização de Código
+ESLint e Prettier configurados
+
+Scripts úteis:
+
+npm run lint       # verifica problemas de lint
+npm run format     # formata o código com Prettier
+
+🌐 Deploy
+Aplicação hospedada em:
+
+🔗https://test-web-leve-saude-ten.vercel.app/
+
+)
+
+👩‍💻 Desenvolvedora
+Carolyne Ferreira
